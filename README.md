@@ -4,9 +4,9 @@
 - Group: malte.dev.app
 - Artifact: GhostNet
 - Name: GhostNet
-- Package name:
+- Package name: malte.dev.app.GhostNet
 - Java version: 17
 
 ## Dependencies
-- Spring Boot
+see pom.xml
  

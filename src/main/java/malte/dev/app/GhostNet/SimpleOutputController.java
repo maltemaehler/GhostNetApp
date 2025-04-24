@@ -1,4 +1,5 @@
 // Simple Controller class for the Spring Boot application. Handels HTTP requests and responses.
+// Links to SimpleOutputService.java, which contains the logic for the greeting message.
 
 // Let's the program know where this class is located
 package malte.dev.app.GhostNet;
