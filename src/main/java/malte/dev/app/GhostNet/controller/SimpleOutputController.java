@@ -1,7 +1,9 @@
-package malte.dev.app.GhostNet;
+package malte.dev.app.GhostNet.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import malte.dev.app.GhostNet.service.SimpleOutputService;
 
 @RestController
 public class SimpleOutputController {

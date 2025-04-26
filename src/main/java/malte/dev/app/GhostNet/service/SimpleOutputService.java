@@ -1,4 +1,4 @@
-package malte.dev.app.GhostNet;
+package malte.dev.app.GhostNet.service;
 
 import org.springframework.stereotype.Service;
 
