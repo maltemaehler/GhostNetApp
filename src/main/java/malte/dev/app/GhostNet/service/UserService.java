@@ -5,6 +5,8 @@ import java.util.List;
 import malte.dev.app.GhostNet.model.User;
 import malte.dev.app.GhostNet.repository.UserRepository;
 
+
+// Check: is it 
 @Service
 public class UserService {
     private final UserRepository userRepo;
@@ -19,5 +21,9 @@ public class UserService {
 
     public User addUser(User user) {
         return userRepo.save(user);
+    }
+
+    public void deletUser(Long id) {
+        userRepo.deleteById(id);
     }
 }
