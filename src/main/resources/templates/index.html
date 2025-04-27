@@ -9,12 +9,20 @@
         <p><a href="/hello">Link to SimpleOutput Service</a></p>
         <p><a href="/user">Register new user</a></p>
         <h1>New User</h1>
-        <form th:action="@{/user}" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" />
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" />
+      
+        <form 
+            hx-post="/user"
+            hx-target="#response"
+            hx-ext="json-enc"
+            hx-headers='{"Content-Type": "application/json"}'
+        >
+            <input type="text" name="name" placeholder="Name" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
             <button type="submit">Create User</button>
-        </form>
+    </form>    
+
+        <div id="response"></div>
+
+        <script src="/webjars/htmx.org/2.0.4/dist/htmx.min.js"></script>
     </body>
 </html>
