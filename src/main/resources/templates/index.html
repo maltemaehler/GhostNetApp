@@ -8,5 +8,13 @@
         <p>This is a simple web application using Spring Boot and Thymeleaf.</p>
         <p><a href="/hello">Link to SimpleOutput Service</a></p>
         <p><a href="/user">Register new user</a></p>
+        <h1>New User</h1>
+        <form th:action="@{/user}" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" />
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" />
+            <button type="submit">Create User</button>
+        </form>
     </body>
 </html>

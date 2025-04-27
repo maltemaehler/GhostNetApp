@@ -7,7 +7,7 @@ import malte.dev.app.GhostNet.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
