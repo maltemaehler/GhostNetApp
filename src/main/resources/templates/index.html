@@ -10,12 +10,11 @@
     <body>
         <h1>Welcome to the GhostNet WebApp</h1>
         <p>This is a simple web application using Spring Boot and Thymeleaf.</p>
-        <p><a href="/hello">Link to SimpleOutput Service</a></p>
-        <p><a href="/user">Register new user</a></p>
+        <p><a href="/nets">Show all ghost nets</a></p>
         <h1>New User</h1>
       
         <form 
-            hx-post="/user"            
+            hx-post="/api/user"            
             hx-ext="json-enc"
             hx-headers='{"Content-Type": "application/json"}'
             hx-target="#response">

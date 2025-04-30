@@ -1,9 +1,9 @@
 package malte.dev.app.GhostNet.repository;
 
+import malte.dev.app.GhostNet.model.GhostNet;
 import org.springframework.data.jpa.repository.JpaRepository;
-import malte.dev.app.GhostNet.model.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface GhostNetRepository extends JpaRepository<GhostNet, Long> {
 }
