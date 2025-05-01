@@ -6,7 +6,6 @@ import malte.dev.app.GhostNet.model.User;
 import malte.dev.app.GhostNet.repository.UserRepository;
 
 
-// Check: is it 
 @Service
 public class UserService {
     private final UserRepository userRepo;
