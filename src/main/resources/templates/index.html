@@ -26,7 +26,29 @@
             </div>
 
             <button type="submit" class="btn btn-dark">Create User</button>
-        </form>    
+        </form>
+        
+        <!-- GhostNet form Section -->
+        <h2>New GhostNet</h2>
+        <form
+            hx-post="/api/ghostnet"
+            hx-ext="json-enc"
+            hx-headers='{"Content-Type": "application/json"}'
+            hx-target="#response">
+
+            <div class="mb-3">
+                <label for ="id" class="form-label">GhostNet ID</label>
+                <input type="text" id="Id" name="id" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <input type="text" id="status" name="status" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-dark">Create GhostNet</button>
+
+            </div>
+        </form>
 
         <div id="response"></div>
     </div>

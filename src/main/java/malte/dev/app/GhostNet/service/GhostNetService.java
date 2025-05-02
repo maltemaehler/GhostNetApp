@@ -17,4 +17,8 @@ public class GhostNetService {
     public List<GhostNet> getAllGhostNets() {
         return ghostNetRepository.findAll();
     }
+
+    public GhostNet addGhostNet(GhostNet ghostnet) {
+        return ghostNetRepository.save(ghostnet);
+    }
 }
