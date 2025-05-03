@@ -15,7 +15,8 @@ public class GhostNetRestController {
     }
 
     @PostMapping
-    public GhostNet createGhostNet(@RequestBody GhostNet ghostnet) {
-        return ghostNetService.addGhostNet(ghostnet);
+    public String createGhostNet(@RequestBody GhostNet ghostnet) {
+        GhostNet gnId = ghostNetService.addGhostNet(ghostnet);
+        return "<div class='alert alert-success'>Ghostnet with ID "+ gnId.getId() + " created successfully!</div>";
     }
 }

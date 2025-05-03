@@ -1,12 +1,6 @@
 package malte.dev.app.GhostNet.controller;
 
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.bind.annotation.DeleteMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
 
 import malte.dev.app.GhostNet.model.User;
 import malte.dev.app.GhostNet.service.UserService;
@@ -21,8 +15,9 @@ public class UserRestController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public String createUser(@RequestBody User user) {
+        User sUser = userService.addUser(user);
+        return "<div class='alert alert-success'>User " + sUser.getName() + " created successfully!</div>";
     }
 
     @DeleteMapping("/{id}")

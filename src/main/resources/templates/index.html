@@ -1,56 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout :: html(title='GhostNet WebApp')}">
-<body>
-    <div th:fragment="content">
-        <h1>GhostNet</h1>
-        <p>Clean oceans, one net at a time.</p>
-        <p><a href="/nets" class="btn btn-dark">Show me all ghost nets!</a></p>
-        
-        <!-- User form section -->
-        <h2>New User</h2>
-        <form 
-            hx-post="/api/user"            
-            hx-ext="json-enc"
-            hx-headers='{"Content-Type": "application/json"}'
-            hx-target="#response">
-
-            <div class="mb-3">
-                <label for="name" class="form-label">Username:</label>
-                <input type="text" id="name" name="name" class="form-control">
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script th:src="@{/webjars/htmx.org/2.0.4/dist/htmx.min.js}"></script>
+        <script th:src="@{/webjars/htmx.org/2.0.4/dist/ext/json-enc.js}"></script>
+    </head>
+    <body>
+        <header>
+            <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">GhostNet.org</a>
+                    <div class="auth-buttons">
+                        <a th:href="@{/login}" class="btn btn-outline-light me-2">Login</a>
+                        <a th:href="@{/register}" class="btn btn-light">Register</a>
+                    </div>
+                </div>
             </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-dark">Create User</button>
-        </form>
-        
-        <!-- GhostNet form Section -->
-        <h2>New GhostNet</h2>
-        <form
-            hx-post="/api/ghostnet"
-            hx-ext="json-enc"
-            hx-headers='{"Content-Type": "application/json"}'
-            hx-target="#response">
-
-            <div class="mb-3">
-                <label for ="id" class="form-label">GhostNet ID</label>
-                <input type="text" id="Id" name="id" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
-                <input type="text" id="status" name="status" class="form-control">
-            </div>
-
-            <button type="submit" class="btn btn-dark">Create GhostNet</button>
-
-            </div>
-        </form>
-
-        <div id="response"></div>
-    </div>
-</body>
+        </header>
+            <div class="container-fluid">
+                <div class="row">
+                  
+                  <!-- Main content area -->
+                  <div class="col-md-9">
+                    <p>"Clean oceans, one net at a time."<br>-Malte</br></p>
+                    <img th:src="@{/images/ghostnethome.jpg}" class="img-fluid" alt="GhostNetShark">
+                  </div>
+              
+                  <!-- Right sidebar area -->
+                  <div class="col-md-3">
+                    <div class="d-flex flex-column gap-2 p-3 border-start bg-white" style="height: 100vh;">
+                        <p><a href="/nets" class="btn btn-dark">Show me all ghost nets!</a></p>
+                        <form
+                        hx-post="/api/ghostnet"
+                        hx-ext="json-enc"
+                        hx-headers='{"Content-Type": "application/json"}'
+                        hx-target="#response">              
+                      
+                        <h2>Add GhostNet</h2>
+                        <label for="status" class="form-label">Status</label>
+                        <input type="text" id="status" name="status" class="form-control mb-2">
+                        <button type="submit" class="btn btn-dark">Create GhostNet</button>
+                        <div id="response"></div>
+                        </form>
+                      
+                    </div>
+                  </div>
+              
+                </div>
+              </div>
+        </div>
+    </body>
 </html>
