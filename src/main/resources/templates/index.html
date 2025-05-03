@@ -23,27 +23,34 @@
                   
                   <!-- Main content area -->
                   <div class="col-md-9">
-                    <p>"Clean oceans, one net at a time."<br>-Malte</br></p>
                     <img th:src="@{/images/ghostnethome.jpg}" class="img-fluid" alt="GhostNetShark">
                   </div>
               
                   <!-- Right sidebar area -->
                   <div class="col-md-3">
                     <div class="d-flex flex-column gap-2 p-3 border-start bg-white" style="height: 100vh;">
-                        <p><a href="/nets" class="btn btn-dark">Show me all ghost nets!</a></p>
                         <form
                         hx-post="/api/ghostnet"
                         hx-ext="json-enc"
                         hx-headers='{"Content-Type": "application/json"}'
                         hx-target="#response">              
                       
-                        <h2>Add GhostNet</h2>
-                        <label for="status" class="form-label">Status</label>
-                        <input type="text" id="status" name="status" class="form-control mb-2">
-                        <button type="submit" class="btn btn-dark">Create GhostNet</button>
+                        <h2>I found a Ghost Net!</h2>
+
+                        <label for="Latitude" class="form-label">Latitude</label>
+                        <input type="text" id="latitude" name="latitude" class="form-control mb-2">
+
+                        <label for="Longitude" class="form-label">Longitude</label>
+                        <input type="text" id="longitude" name="longitude" class="form-control mb-2">
+
+                        <label for="Description" class="form-label">Description (optional)</label>
+                        <input type="text" id="description" name="description" class="form-control mb-2">
+
+                        <button type="submit" class="btn btn-dark">Add Ghost Net</button>
+
                         <div id="response"></div>
                         </form>
-                      
+                        <p><a href="/nets" class="btn btn-dark">Show me all Ghost Nets!</a></p>
                     </div>
                   </div>
               

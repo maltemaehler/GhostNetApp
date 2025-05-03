@@ -9,6 +9,8 @@ public class GhostNet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String status;
+    private double latitude;
+    private double longitude;
 
     public Long getId() {
         return id;
