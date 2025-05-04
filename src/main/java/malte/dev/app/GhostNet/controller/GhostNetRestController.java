@@ -19,4 +19,10 @@ public class GhostNetRestController {
         GhostNet gnId = ghostNetService.addGhostNet(ghostnet);
         return "<div class='alert alert-success'>Ghostnet with ID "+ gnId.getId() + " created successfully!</div>";
     }
+
+    @PutMapping("/api/status")
+    public String updateGhostNetStatus(@RequestBody GhostNet ghostnet) {
+    GhostNet updated = ghostNetService.updateGhostNetStatus(ghostnet.getId(), ghostnet.getStatus());
+    return "<div class='alert alert-success'>Ghostnet with ID "+ updated.getId() + " updated to status: " + updated.getStatus() + "</div>";
+}
 }
