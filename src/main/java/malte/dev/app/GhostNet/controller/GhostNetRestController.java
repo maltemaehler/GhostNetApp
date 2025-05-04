@@ -20,9 +20,10 @@ public class GhostNetRestController {
         return "<div class='alert alert-success'>Ghostnet with ID "+ gnId.getId() + " created successfully!</div>";
     }
 
-    @PutMapping("/api/status")
+    @PutMapping("/status")
     public String updateGhostNetStatus(@RequestBody GhostNet ghostnet) {
-    GhostNet updated = ghostNetService.updateGhostNetStatus(ghostnet.getId(), ghostnet.getStatus());
-    return "<div class='alert alert-success'>Ghostnet with ID "+ updated.getId() + " updated to status: " + updated.getStatus() + "</div>";
-}
+        ghostNetService.updateGhostNetStatus(ghostnet.getId(), ghostnet.getStatus());
+        // Return HTML that includes script to reload the page
+        return "</div><script>setTimeout(() => window.location.reload(), 10);</script>";
+    }
 }
