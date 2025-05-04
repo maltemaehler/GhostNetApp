@@ -12,19 +12,23 @@
                 </div>
             </div>
         </header>
-        <h1>List of GhostNets</h1>
+        <h1>Liste der Geisternetze</h1>
         <table border="1" class="table table-striped">
             <tr>
                 <th>ID</th>
                 <th>Status</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <th>Breitengrad</th>
+                <th>Längengrad</th>
+                <th>Größe (geschätzt)</th>
+                <th>Letzte Änderung durch</th>
             </tr>
             <tr th:each="net : ${ghostnets}">
                 <td th:text="${net.id}"></td>
                 <td th:text="${net.status}"></td>
                 <td th:text="${net.latitude}"></td>
                 <td th:text="${net.longitude}"></td>
+                <td th:text="${net.size}"></td>
+                <td th:text="${editor}"></td>
             </tr>
         </table>        
     </body>

@@ -11,6 +11,8 @@ public class GhostNet {
     private String status;
     private double latitude;
     private double longitude;
+    private String editor;
+    private int size;
 
     public Long getId() {
         return id;
@@ -38,5 +40,19 @@ public class GhostNet {
     }
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getEditor() {
+        return editor;
+    }
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    public int getSize() {
+        return size;
+    }
+    public void setSize(int size) {
+        this.size = size;
     }
 }

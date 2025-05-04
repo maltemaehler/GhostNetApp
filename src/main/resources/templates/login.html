@@ -20,24 +20,24 @@
                 <div class="col-md-6">
                     <div class="card shadow">
                         <div class="card-body p-4">
-                            <h2 class="text-center mb-4">Top Secret Sea Society</h2>
-                            <h4 class="text-center mb-4 fw-light">(Password and Plankton Required)</h4>
+                            <h2 class="text-center mb-4">Team Geisternetz</h2>
+                            <h4 class="text-center mb-4 fw-light">(Passwort und Plankton wird benötigt)</h4>
                             
                             <div th:if="${param.error}" class="alert alert-danger">
-                                Invalid username or password.
+                                Invalider Nutzername oder Passwort.
                             </div>
                             <div th:if="${param.logout}" class="alert alert-success">
-                                You have been logged out.
+                                Logout war erfolgreich.
                             </div>
                             
                             <form action="/login" method="post">
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Username:</label>
+                                    <label for="username" class="form-label">Nutzername:</label>
                                     <input type="text" id="username" name="username" class="form-control">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="form-label">Password:</label>
+                                    <label for="password" class="form-label">Passwort:</label>
                                     <input type="password" id="password" name="password" class="form-control">
                                 </div>
 
@@ -46,7 +46,7 @@
                                 </div>
                                 
                                 <div class="mt-3 text-center">
-                                    <a href="/register">Don't have an account? Register here</a>
+                                    <a href="/register">Werde Teil des Teams!</a>
                                 </div>
                             </form>
                         </div>

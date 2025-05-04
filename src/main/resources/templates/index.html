@@ -11,17 +11,20 @@
         <header>
             <div class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/">GhostNet.org</a>
+                    <div class="d-flex align-items-center">
+                        <a class="navbar-brand me-0" href="/">GhostNet.org</a>
+                        <span class="navbar-text ms-2">by Shea Sepherd</span>
+                    </div>
                     <div class="auth-buttons">
                         <div sec:authorize="isAuthenticated()">
-                            <span class="text-light me-2">Welcome, <span sec:authentication="name"></span>!</span>
+                            <span class="text-light me-2">Ahoi, <span sec:authentication="name"></span>!</span>
                             <form th:action="@{/logout}" method="post" class="d-inline">
                                 <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
                             </form>
                         </div>
                         <div sec:authorize="!isAuthenticated()">
                             <a th:href="@{/login}" class="btn btn-outline-light me-2">Login</a>
-                            <a th:href="@{/register}" class="btn btn-light">Register</a>
+                            <a th:href="@{/register}" class="btn btn-light">Registrieren</a>
                         </div>
                     </div>
                 </div>
@@ -44,22 +47,22 @@
                         hx-headers='{"Content-Type": "application/json"}'
                         hx-target="#response">              
                       
-                        <h2>I found a Ghost Net!</h2>
+                        <h2>Ich hab eins gefunden!</h2>
 
-                        <label for="Latitude" class="form-label">Latitude</label>
+                        <label for="Latitude" class="form-label">Breitengrad</label>
                         <input type="text" id="latitude" name="latitude" class="form-control mb-2">
 
-                        <label for="Longitude" class="form-label">Longitude</label>
+                        <label for="Longitude" class="form-label">Längengrad</label>
                         <input type="text" id="longitude" name="longitude" class="form-control mb-2">
 
-                        <label for="Description" class="form-label">Description (optional)</label>
+                        <label for="Description" class="form-label">Bemerkung (optional)</label>
                         <input type="text" id="description" name="description" class="form-control mb-2">
 
-                        <button type="submit" class="btn btn-dark">Add Ghost Net</button>
+                        <button type="submit" class="btn btn-dark">Geisternetz hinzufügen</button>
 
                         <div id="response"></div>
                         </form>
-                        <p><a href="/nets" class="btn btn-outline-dark">Show me all Ghost Nets!</a></p>
+                        <p><a href="/nets" class="btn btn-outline-dark">Zeig mir alle Geisternetze!</a></p>
                     </div>
                   </div>
               
