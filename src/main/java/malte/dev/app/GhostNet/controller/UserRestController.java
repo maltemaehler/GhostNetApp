@@ -16,8 +16,12 @@ public class UserRestController {
 
     @PostMapping
     public String createUser(@RequestBody User user) {
-        User sUser = userService.addUser(user);
-        return "<div class='alert alert-success'>User " + sUser.getName() + " created successfully!</div>";
+        try {
+            User sUser = userService.addUser(user);
+            return "<div class='alert alert-success'>User " + sUser.getName() + " created successfully!</div>";
+        } catch (Exception e) {
+        return "<div class='alert alert-danger'>Das Registrieren schlug fehl:" + e.getMessage() + "</div>";
+        }
     }
 
     @DeleteMapping("/{id}")

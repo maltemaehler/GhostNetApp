@@ -5,33 +5,41 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import malte.dev.app.GhostNet.model.GhostNet;
 import malte.dev.app.GhostNet.repository.GhostNetRepository;
+import malte.dev.app.GhostNet.repository.UserRepository;
 
 import java.util.List;
 
 @Service
 public class GhostNetService {
     private final GhostNetRepository ghostNetRepository;
+    private final UserRepository userRepository;
     
-    public GhostNetService(GhostNetRepository ghostNetRepository) {
+    public GhostNetService(GhostNetRepository ghostNetRepository, UserRepository userRepository) {
         this.ghostNetRepository = ghostNetRepository;
+        this.userRepository = userRepository;
     }
 
     public List<GhostNet> getAllGhostNets() {
         return ghostNetRepository.findAll();
     }
-
+    
     public GhostNet addGhostNet(GhostNet ghostnet) {
         // Get current authentication
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         
-        ghostnet.setStatus("Gemeldet");
-
         // Set editor based on authentication status
         if (authentication != null && authentication.isAuthenticated() && 
             !authentication.getName().equals("anonymousUser")) {
-            ghostnet.setEditor(authentication.getName()); // Use authenticated username
+            String username = authentication.getName();
+            ghostnet.setEditor(username);
+            
+            // Look up user's telephone number
+            userRepository.findByName(username).ifPresent(user -> {
+                ghostnet.setEditor_no(user.getTelephone());
+            });
         } else {
-            ghostnet.setEditor("anonymous"); // Default value
+            ghostnet.setEditor("anonymous");
+            ghostnet.setEditor_no(null);
         }
         
         return ghostNetRepository.save(ghostnet);
@@ -49,9 +57,16 @@ public class GhostNetService {
         // Update editor based on who made the change
         if (authentication != null && authentication.isAuthenticated() && 
             !authentication.getName().equals("anonymousUser")) {
-            existingNet.setEditor(authentication.getName());
+            String username = authentication.getName();
+            existingNet.setEditor(username);
+            
+            // Look up user's telephone number
+            userRepository.findByName(username).ifPresent(user -> {
+                existingNet.setEditor_no(user.getTelephone());
+            });
         } else {
             existingNet.setEditor("anonymous");
+            existingNet.setEditor_no(null); // Clear any existing number for anonymous edits
         }
         
         return ghostNetRepository.save(existingNet);

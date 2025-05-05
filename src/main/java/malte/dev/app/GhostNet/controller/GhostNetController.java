@@ -18,6 +18,6 @@ public class GhostNetController {
     @GetMapping("/nets")
     public String listGhostNets(Model model) {
         model.addAttribute("ghostnets", ghostNetService.getAllGhostNets());
-        return "/nets";
+        return "nets";
     }
 }

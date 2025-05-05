@@ -6,7 +6,6 @@ import malte.dev.app.GhostNet.model.GhostNet;
 
 @RestController
 @RequestMapping("/api/ghostnet")
-
 public class GhostNetRestController {
     private final GhostNetService ghostNetService;
 
@@ -16,14 +15,23 @@ public class GhostNetRestController {
 
     @PostMapping
     public String createGhostNet(@RequestBody GhostNet ghostnet) {
-        GhostNet gnId = ghostNetService.addGhostNet(ghostnet);
-        return "<div class='alert alert-success'>Ghostnet with ID "+ gnId.getId() + " created successfully!</div>";
+        try {
+            GhostNet savedNet = ghostNetService.addGhostNet(ghostnet);
+            return "<div class='alert alert-success'>Ghostnet with ID "+ savedNet.getId() + " created successfully!</div>";
+        } catch (Exception e) {
+            return "<div class='alert alert-danger'>Error creating ghostnet: " + e.getMessage() + "</div>";
+        }
     }
 
     @PutMapping("/status")
     public String updateGhostNetStatus(@RequestBody GhostNet ghostnet) {
-        ghostNetService.updateGhostNetStatus(ghostnet.getId(), ghostnet.getStatus());
-        // Return HTML that includes script to reload the page
-        return "</div><script>setTimeout(() => window.location.reload(), 10);</script>";
+        try {
+            GhostNet updated = ghostNetService.updateGhostNetStatus(ghostnet.getId(), ghostnet.getStatus());
+            // Fixed malformed HTML and increased timeout
+            return "<div class='alert alert-success'>Ghostnet status updated successfully!</div>" + 
+                   "<script>setTimeout(() => window.location.reload(), 1000);</script>";
+        } catch (Exception e) {
+            return "<div class='alert alert-danger'>Error updating status: " + e.getMessage() + "</div>";
+        }
     }
 }
