@@ -39,7 +39,8 @@ public class GhostNetService {
             });
         } else {
             ghostnet.setEditor("anonymous");
-            ghostnet.setEditor_no(null);
+            ghostnet.setEditor_no("N/A"); // Clear any existing number for anonymous edits
+            ghostnet.setStatus("Gemeldet"); // Set status to inactive for anonymous users
         }
         
         return ghostNetRepository.save(ghostnet);
