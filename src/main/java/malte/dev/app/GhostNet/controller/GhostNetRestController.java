@@ -28,8 +28,8 @@ public class GhostNetRestController {
         try {
             GhostNet updated = ghostNetService.updateGhostNetStatus(ghostnet.getId(), ghostnet.getStatus());
             // Fixed malformed HTML and increased timeout
-            return "<div class='alert alert-success'>Ghostnet status updated successfully!</div>" + 
-                   "<script>setTimeout(() => window.location.reload(), 1000);</script>";
+            return "<div class='alert alert-success'>Geisternetz " + updated.getId() + " erfolgreich geändert!</div>" + 
+                   "<script>setTimeout(() => window.location.reload(), 2500);</script>";
         } catch (Exception e) {
             return "<div class='alert alert-danger'>Error updating status: " + e.getMessage() + "</div>";
         }
