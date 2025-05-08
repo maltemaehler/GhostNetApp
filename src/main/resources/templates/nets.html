@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-12">
                     <!-- Full-width map -->
-                    <div id="ghostnetMap" style="height: 50vh; width: 100%;"></div>
+                    <div id="ghostnetMap" style="height: 70vh; width: 100%;"></div>
                 </div>
             </div>
         </div>
@@ -55,9 +55,6 @@
         <!-- Status update form for authenticated users -->
         <div class="container-fluid mt-3" sec:authorize="isAuthenticated()">
             <div class="row">
-                <div class="col-md-9">
-                    <h1>Liste aller Geisternetze</h1>
-                </div>
                 <div class="col-md-3">
                     <h5>Status aktualisieren</h5>
                     <form class="d-flex" hx-put="/api/ghostnet/status" hx-ext="json-enc" hx-headers='{"Content-Type": "application/json"}'>
@@ -122,53 +119,69 @@
             });
         </script>
         <script th:inline="javascript">
-            // Initialize map with bounds constraints
+            const mapElement = document.getElementById('ghostnetMap');
+
+            // Function to calculate the minimum zoom level based on container size
+            function calculateMinZoom() {
+                // Get the width of the map container
+                const containerWidth = mapElement.clientWidth;
+                // Convert to a zoom level that fits the world width to container width
+                // This is an approximate calculation that may need fine-tuning
+                return Math.ceil(Math.log2(containerWidth / 256));
+            }
+
+            // Initialize map with dynamic minZoom
             const map = L.map('ghostnetMap', {
-                minZoom: 2,  // Prevent zooming out too far
+                minZoom: calculateMinZoom(),  // Dynamic minimum zoom level
                 maxBounds: [
                     [-90, -180],  // Southwest corner
                     [90, 180]     // Northeast corner
                 ],
-                maxBoundsViscosity: 1.0  // How "solid" the bounds are (1.0 = cannot move outside)
+                maxBoundsViscosity: 1.0  // How "solid" the bounds are
             }).setView([54.5260, 15.2551], 4); // Center on Baltic Sea
-    
+
             // Add OpenStreetMap tile layer with noWrap option
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 noWrap: true  // This prevents the tiles from repeating horizontally
             }).addTo(map);
-    
-        // Get GhostNet data from Thymeleaf model
-        const ghostNets = /*[[${ghostnets}]]*/ [];
-        
-        /* If we're on the index page, fetch the data
-        if (ghostNets.length === 0) {
-            fetch('/api/ghostnet/all')
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(net => addMarker(net));
-                });
-        } else {
-            // If we're on the nets page with data already available
-            ghostNets.forEach(net => addMarker(net));
-        }
-        */
 
-        ghostNets.forEach(net => {
-            addMarker(net);
-        });
-        
-        function addMarker(net) {
-            if (net.latitude && net.longitude) {
-                const marker = L.marker([net.latitude, net.longitude]).addTo(map);
-                marker.bindPopup(`
-                    <b>Ghostnet #${net.id}</b><br>
-                    Status: ${net.status || 'Gemeldet'}<br>
-                    Größe: ${net.size} m²<br>
-                    Gemeldet von: ${net.editor || 'Anonymous'}
-                `);
+            // Update minimum zoom level when window is resized
+            window.addEventListener('resize', function() {
+                map.setMinZoom(calculateMinZoom());
+            });
+
+            // Get GhostNet data from Thymeleaf model
+            const ghostNets = /*[[${ghostnets}]]*/ [];
+            
+            /* If we're on the index page, fetch the data
+            if (ghostNets.length === 0) {
+                fetch('/api/ghostnet/all')
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(net => addMarker(net));
+                    });
+            } else {
+                // If we're on the nets page with data already available
+                ghostNets.forEach(net => addMarker(net));
             }
-        }
-    </script>
+            */
+
+            ghostNets.forEach(net => {
+                addMarker(net);
+            });
+            
+            function addMarker(net) {
+                if (net.latitude && net.longitude) {
+                    const marker = L.marker([net.latitude, net.longitude]).addTo(map);
+                    marker.bindPopup(`
+                        <b>Ghostnet #${net.id}</b><br>
+                        Status: ${net.status || 'Gemeldet'}<br>
+                        Größe: ${net.size} m²<br>
+                        Gemeldet von: ${net.editor || 'Anonymous'}
+                    `);
+                }
+            }
+        </script>
     </body>
 </html>
