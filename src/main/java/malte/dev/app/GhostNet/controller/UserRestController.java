@@ -18,7 +18,7 @@ public class UserRestController {
     public String createUser(@RequestBody User user) {
         try {
             User sUser = userService.addUser(user);
-            return "<div class='alert alert-success'>User " + sUser.getName() + " created successfully!</div>";
+            return "<div class='alert alert-success'>Nutzer " + sUser.getName() + " erfolgreich hinzugefügt!</div>";
         } catch (Exception e) {
         return "<div class='alert alert-danger'>Das Registrieren schlug fehl:" + e.getMessage() + "</div>";
         }
