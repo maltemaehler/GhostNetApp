@@ -11,6 +11,7 @@ import malte.dev.app.GhostNet.model.User;
 import malte.dev.app.GhostNet.repository.UserRepository;
 
 @Service
+//UserService class is from Spring Security. Necessary to load user details.
 public class UserService implements UserDetailsService {
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
@@ -20,6 +21,7 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // Spring Security method for loading user details by username.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByName(username)
@@ -38,9 +40,5 @@ public class UserService implements UserDetailsService {
     public User addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.save(user);
-    }
-
-    public void deletUser(Long id) {
-        userRepo.deleteById(id);
     }
 }

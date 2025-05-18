@@ -26,9 +26,4 @@ public class UserRestController {
         return "<div class='alert alert-danger'>Das Registrieren schlug fehl:" + e.getMessage() + "</div>";
         }
     }
-
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deletUser(id);
-    }
 }
