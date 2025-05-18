@@ -5,15 +5,18 @@ import org.springframework.web.bind.annotation.*;
 import malte.dev.app.GhostNet.model.User;
 import malte.dev.app.GhostNet.service.UserService;
 
-@RestController
-@RequestMapping("/api/user")
+@RestController //Combination of @Controller and @ResponseBody
+@RequestMapping("/api/user") //Base URL for this controller
 public class UserRestController {
     private final UserService userService;
 
+
+    //Constructor dependency injection. Auto injects UserService.
     public UserRestController(UserService userService) {
         this.userService = userService;
     }
 
+    // Creates User
     @PostMapping
     public String createUser(@RequestBody User user) {
         try {

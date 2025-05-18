@@ -1,12 +1,10 @@
-# GhostNetApp
+GhostNet WebApp
 
-## Spring Initialzr Infos
-- Group: malte.dev.app
-- Artifact: GhostNet
-- Name: GhostNet
-- Package name: malte.dev.app.GhostNet
-- Java version: 17
+Locate lost fishing nets.
+Create and Login as User to retrieve nets.
 
-## Dependencies
-see pom.xml
+compile project and run tests: `./mvnw clean install`
+start webapp: `./mvnw spring-boot:run`
+
+Open with `localhost:8080`
  
