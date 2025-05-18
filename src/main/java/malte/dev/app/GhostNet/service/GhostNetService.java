@@ -24,30 +24,26 @@ public class GhostNetService {
     }
     
     public GhostNet addGhostNet(GhostNet ghostnet) {
-        // Get current authentication
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
-        // Set editor based on authentication status
+
         if (authentication != null && authentication.isAuthenticated() && 
             !authentication.getName().equals("anonymousUser")) {
             String username = authentication.getName();
             ghostnet.setEditor(username);
             
-            // Look up user's telephone number
             userRepository.findByName(username).ifPresent(user -> {
                 ghostnet.setEditor_no(user.getTelephone());
             });
         } else {
             ghostnet.setEditor("anonymous");
-            ghostnet.setEditor_no("N/A"); // Clear any existing number for anonymous edits
-            ghostnet.setStatus("Gemeldet"); // Set status to inactive for anonymous users
+            ghostnet.setEditor_no("N/A");
+            ghostnet.setStatus("Gemeldet");
         }
         
         return ghostNetRepository.save(ghostnet);
     }
 
     public GhostNet updateGhostNetStatus(Long id, String status) {
-        // Get current authentication
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         
         GhostNet existingNet = ghostNetRepository.findById(id)
@@ -55,19 +51,17 @@ public class GhostNetService {
         
         existingNet.setStatus(status);
         
-        // Update editor based on who made the change
         if (authentication != null && authentication.isAuthenticated() && 
             !authentication.getName().equals("anonymousUser")) {
             String username = authentication.getName();
             existingNet.setEditor(username);
             
-            // Look up user's telephone number
             userRepository.findByName(username).ifPresent(user -> {
                 existingNet.setEditor_no(user.getTelephone());
             });
         } else {
             existingNet.setEditor("anonymous");
-            existingNet.setEditor_no(null); // Clear any existing number for anonymous edits
+            existingNet.setEditor_no(null);
         }
         
         return ghostNetRepository.save(existingNet);

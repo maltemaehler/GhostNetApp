@@ -27,7 +27,6 @@ public class GhostNetRestController {
     public String updateGhostNetStatus(@RequestBody GhostNet ghostnet) {
         try {
             GhostNet updated = ghostNetService.updateGhostNetStatus(ghostnet.getId(), ghostnet.getStatus());
-            // Fixed malformed HTML and increased timeout
             return "<div class='alert alert-success'>Geisternetz " + updated.getId() + " erfolgreich geändert!</div>" + 
                    "<script>setTimeout(() => window.location.reload(), 2500);</script>";
         } catch (Exception e) {

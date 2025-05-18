@@ -40,19 +40,14 @@
             </div>
         </header>
 
-        <!-- Main content area -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <!-- Full-width map -->
                     <div id="ghostnetMap" style="height: 70vh; width: 100%;"></div>
                 </div>
             </div>
         </div>
 
-        
-        
-        <!-- Status update form for authenticated users -->
         <div class="container-fluid mt-3" sec:authorize="isAuthenticated()">
             <div class="row">
                 <div class="col-md-3">
@@ -72,8 +67,7 @@
                 </div>
             </div>
         </div>
-        
-        <!-- For non-authenticated users, just the heading -->
+
         <div class="container-fluid mt-3" sec:authorize="!isAuthenticated()">
         </div>
         
@@ -107,9 +101,9 @@
         <script>
             $(document).ready(function() {
                 $('#ghostNetTable').DataTable({
-                    paging: false,       // Removes pagination
-                    lengthChange: false, // Removes the "Show X entries" dropdown
-                    info: false,         // Removes the "Showing X to Y of Z entries" text
+                    paging: false,       
+                    lengthChange: false, 
+                    info: false,         
                     
                     language: {
                         search: "Suchen:",
@@ -121,51 +115,30 @@
         <script th:inline="javascript">
             const mapElement = document.getElementById('ghostnetMap');
 
-            // Function to calculate the minimum zoom level based on container size
             function calculateMinZoom() {
-                // Get the width of the map container
                 const containerWidth = mapElement.clientWidth;
-                // Convert to a zoom level that fits the world width to container width
-                // This is an approximate calculation that may need fine-tuning
                 return Math.ceil(Math.log2(containerWidth / 256));
             }
 
-            // Initialize map with dynamic minZoom
             const map = L.map('ghostnetMap', {
-                minZoom: calculateMinZoom(),  // Dynamic minimum zoom level
+                minZoom: calculateMinZoom(),
                 maxBounds: [
-                    [-90, -180],  // Southwest corner
-                    [90, 180]     // Northeast corner
+                    [-90, -180],
+                    [90, 180]
                 ],
-                maxBoundsViscosity: 1.0  // How "solid" the bounds are
-            }).setView([54.5260, 15.2551], 4); // Center on Baltic Sea
+                maxBoundsViscosity: 1.0
+            }).setView([54.5260, 15.2551], 4);
 
-            // Add OpenStreetMap tile layer with noWrap option
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                noWrap: true  // This prevents the tiles from repeating horizontally
+                noWrap: true
             }).addTo(map);
 
-            // Update minimum zoom level when window is resized
             window.addEventListener('resize', function() {
                 map.setMinZoom(calculateMinZoom());
             });
 
-            // Get GhostNet data from Thymeleaf model
             const ghostNets = /*[[${ghostnets}]]*/ [];
-            
-            /* If we're on the index page, fetch the data
-            if (ghostNets.length === 0) {
-                fetch('/api/ghostnet/all')
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(net => addMarker(net));
-                    });
-            } else {
-                // If we're on the nets page with data already available
-                ghostNets.forEach(net => addMarker(net));
-            }
-            */
 
             ghostNets.forEach(net => {
                 addMarker(net);
