@@ -23,7 +23,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByName(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("Nutzer: " + username + "existiert nicht!"));
         
         return new org.springframework.security.core.userdetails.User(
             user.getName(), 
@@ -36,7 +36,6 @@ public class UserService implements UserDetailsService {
     }
 
     public User addUser(User user) {
-        // Encode password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.save(user);
     }
