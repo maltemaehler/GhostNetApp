@@ -16,8 +16,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            // Disabled CSRF protection for prototyping purposes. ENABLE in production!
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+            // ToDo: Check if all authentication exceptions are necessary
             .requestMatchers("/", "/register", "/api/user", "/login", "/nets", "/api/ghostnet", "/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
             .anyRequest().authenticated())
         .formLogin(form -> form
