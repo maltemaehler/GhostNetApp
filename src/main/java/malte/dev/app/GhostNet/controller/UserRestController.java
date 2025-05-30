@@ -10,8 +10,6 @@ import malte.dev.app.GhostNet.service.UserService;
 public class UserRestController {
     private final UserService userService;
 
-
-    //Constructor dependency injection. Auto injects UserService.
     public UserRestController(UserService userService) {
         this.userService = userService;
     }

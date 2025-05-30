@@ -13,16 +13,18 @@ public class GhostNetRestController {
         this.ghostNetService = ghostNetService;
     }
 
+    // Add GhostNet
     @PostMapping
     public String createGhostNet(@RequestBody GhostNet ghostnet) {
         try {
             GhostNet savedNet = ghostNetService.addGhostNet(ghostnet);
-            return "<div class='alert alert-success'>Ghostnet with ID "+ savedNet.getId() + " created successfully!</div>";
+            return "<div class='alert alert-success'>Geisternetz "+ savedNet.getId() + " erfolgreich hinzugefügt!</div>";
         } catch (Exception e) {
-            return "<div class='alert alert-danger'>Error creating ghostnet: " + e.getMessage() + "</div>";
+            return "<div class='alert alert-danger'>Es ist ein Fehler aufgetreten: " + e.getMessage() + "</div>";
         }
     }
 
+    // Change status of a GhostNet
     @PutMapping("/status")
     public String updateGhostNetStatus(@RequestBody GhostNet ghostnet) {
         try {
@@ -30,7 +32,7 @@ public class GhostNetRestController {
             return "<div class='alert alert-success'>Geisternetz " + updated.getId() + " erfolgreich geändert!</div>" + 
                    "<script>setTimeout(() => window.location.reload(), 2500);</script>";
         } catch (Exception e) {
-            return "<div class='alert alert-danger'>Error updating status: " + e.getMessage() + "</div>";
+            return "<div class='alert alert-danger'>Es ist ein Fehler aufgetreten: " + e.getMessage() + "</div>";
         }
     }
 }
