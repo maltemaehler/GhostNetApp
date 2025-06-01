@@ -19,10 +19,12 @@ public class GhostNetService {
         this.userRepository = userRepository;
     }
 
+    // Get all GhostNets
     public List<GhostNet> getAllGhostNets() {
         return ghostNetRepository.findAll();
     }
     
+    // Add Ghostnet with authentication logic
     public GhostNet addGhostNet(GhostNet ghostnet) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
