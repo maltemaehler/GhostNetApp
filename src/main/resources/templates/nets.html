@@ -55,7 +55,9 @@
             function addMarker(net) {
                 if (net.latitude && net.longitude) {
                     L.marker([net.latitude, net.longitude]).addTo(map)
-                    .bindPopup(`ID: ${net.id}`)
+                    .bindPopup(`<strong>ID: ${net.id}</strong><br>
+                        Stauts: ${net.status}<br>
+                        Gemeldet von: ${net.editor || 'Anonym'}`)
                     .openPopup();
                 }
             }
