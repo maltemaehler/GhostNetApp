@@ -51,6 +51,12 @@
                 maxZoom: 10,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
+
+            function addMarker(net) {
+                L.marker([net.latitude, net.longitude]).addTo(map)
+                .bindPopup('test')
+                .openPopup();
+            }
         </script>
 
         <div class="container-fluid mt-3" sec:authorize="isAuthenticated()">
