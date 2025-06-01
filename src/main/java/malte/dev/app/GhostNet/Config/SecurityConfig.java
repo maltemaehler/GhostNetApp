@@ -15,7 +15,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(requests -> requests
-                .requestMatchers("/", "/login", "/register", "/nets", "/images/**", "/api/user", "/css/**", "/js/**", "/webjars/**").permitAll()
+                .requestMatchers("/", "/login", "/register", "/nets", "/images/**", "/api/user", "/css/**", "/js/**", "/webjars/**", "/api/ghostnet").permitAll()
                 .anyRequest().authenticated());
                 //.requestMatchers("/", "login", "/registration", "/nets", "/images/**", "/css/**", "/js/**", "/webjars/**").permitAll();
         http.formLogin(form -> form
