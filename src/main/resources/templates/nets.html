@@ -46,12 +46,14 @@
         </dic>
 
         <script>
+            // Initializes map. setView sets initial position.
             const map = L.map('map').setView([54.5260, 15.2551], 5);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 10,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
 
+            // function loads markers on map
             function addMarker(net) {
                 if (net.latitude && net.longitude) {
                     L.marker([net.latitude, net.longitude]).addTo(map)
@@ -62,6 +64,8 @@
                 }
             }
         </script>
+
+        <!-- Calls addMarker function for every net in database -->
         <script th:inline="javascript">
             var ghostnets = /*[[${ghostnets}]]*/ [];
             ghostnets.forEach(net => addMarker(net))
