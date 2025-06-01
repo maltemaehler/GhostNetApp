@@ -55,10 +55,14 @@
             function addMarker(net) {
                 if (net.latitude && net.longitude) {
                     L.marker([net.latitude, net.longitude]).addTo(map)
-                    .bindPopup('test')
+                    .bindPopup(`ID: ${net.id}`)
                     .openPopup();
                 }
             }
+        </script>
+        <script th:inline="javascript">
+            var ghostnets = /*[[${ghostnets}]]*/ [];
+            ghostnets.forEach(net => addMarker(net))
         </script>
 
         <div class="container-fluid mt-3" sec:authorize="isAuthenticated()">
