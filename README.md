@@ -1,10 +1,12 @@
 GhostNet WebApp
 
-Locate lost fishing nets.
-Create and Login as User to retrieve nets.
+This app allows the tracking of lost fishing nets - Ghost Nets.
+Logged in users can change the status of nets to let others know, if a net will be retrieved by you.
 
-compile project and run tests: `./mvnw clean install`
-start webapp: `./mvnw spring-boot:run`
+Setting up the app:
+Import the sql dump file `ghostnet_dump.sql` to a mysql database.
 
-Open with `localhost:8080`
+Run `./mvnw clean install` to compile and test the application.
+Run `./mvnw spring-boot:run` to start the application on `localhost:8080`.
+
  
