@@ -40,27 +40,27 @@
                   <div class="col-md-3">
                     <div class="d-flex flex-column gap-2 p-3 border-start bg-white" style="height: 100vh;">
                         <form
-                        hx-post="/api/ghostnet"
-                        hx-ext="json-enc"
-                        hx-headers='{"Content-Type": "application/json"}'
-                        hx-target="#response">              
+                            hx-post="/api/ghostnet"
+                            hx-ext="json-enc"
+                            hx-headers='{"Content-Type": "application/json"}'
+                            hx-target="#response">              
                       
-                        <h2>Netz gefunden? Trag es ein!</h2>
+                            <h2>Netz gefunden? Trag es ein!</h2>
 
-                        <input type="hidden" id="status" name="status" value="Gemeldet">
+                            <input type="hidden" id="status" name="status" value="Gemeldet">
 
-                        <label for="Latitude" class="form-label">Breitengrad</label>
-                        <input type="text" id="latitude" name="latitude" class="form-control mb-2" required>
+                            <label for="Latitude" class="form-label">Breitengrad</label>
+                            <input type="text" id="latitude" name="latitude" class="form-control mb-2" required>
 
-                        <label for="Longitude" class="form-label">Längengrad</label>
-                        <input type="text" id="longitude" name="longitude" class="form-control mb-2" required>
+                            <label for="Longitude" class="form-label">Längengrad</label>
+                            <input type="text" id="longitude" name="longitude" class="form-control mb-2" required>
 
-                        <label for="Size" class="form-label">Größe (in m², geschätzt)</label>
-                        <input type="text" id="size" name="size" class="form-control mb-2" required>
+                            <label for="Size" class="form-label">Größe (in m², geschätzt)</label>
+                            <input type="text" id="size" name="size" class="form-control mb-2" required>
 
-                        <button type="submit" class="btn btn-dark">Geisternetz hinzufügen</button>
+                            <button type="submit" class="btn btn-dark">Geisternetz hinzufügen</button>
 
-                        <div id="response"></div>
+                            <div id="response"></div>
                         </form>
                         <p><a href="/nets" class="btn btn-outline-dark">Zeig mir alle Geisternetze!</a></p>
                     </div>
