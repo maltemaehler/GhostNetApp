@@ -12,4 +12,10 @@ Import the sql dump file `ghostnet_dump.sql` to your MySQL database using `$> my
 Run `./mvnw clean install` to compile and test the application.
 Run `./mvnw spring-boot:run` to start the application on `localhost:8080`.
 
+Use these credentials for login:
+User: `Tester`
+Password: `tester`
+or create your own user.
+Enjoy :)
+
  
