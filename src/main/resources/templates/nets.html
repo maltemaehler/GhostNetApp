@@ -53,9 +53,11 @@
             }).addTo(map);
 
             function addMarker(net) {
-                L.marker([net.latitude, net.longitude]).addTo(map)
-                .bindPopup('test')
-                .openPopup();
+                if (net.latitude && net.longitude) {
+                    L.marker([net.latitude, net.longitude]).addTo(map)
+                    .bindPopup('test')
+                    .openPopup();
+                }
             }
         </script>
 
