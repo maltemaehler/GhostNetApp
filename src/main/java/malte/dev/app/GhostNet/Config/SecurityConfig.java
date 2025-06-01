@@ -13,10 +13,15 @@ public class SecurityConfig {
     // Authorization rules for http requests
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable());
         http.authorizeHttpRequests(requests -> requests
-                .requestMatchers("/", "login", "/registration", "/nets", "/images/**").permitAll()
-                //.requestMatchers("/", "login", "/registration", "/nets", "/images/**", "/css/**", "/js/**", "/webjars/**").permitAll()
+                .requestMatchers("/", "/login", "/register", "/nets", "/images/**", "/api/user", "/css/**", "/js/**", "/webjars/**").permitAll()
                 .anyRequest().authenticated());
+                //.requestMatchers("/", "login", "/registration", "/nets", "/images/**", "/css/**", "/js/**", "/webjars/**").permitAll();
+        http.formLogin(form -> form
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/")
+                    .permitAll());
         return http.build();
     }
 
